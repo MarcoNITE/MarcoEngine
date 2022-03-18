@@ -267,9 +267,6 @@ def train(engine, board):
             move = best_move(engine=engine, board=board_, limit=0.001, use_weights=False)
             board_.push(move)
 
-        #end_time = time.perf_counter()
-        #return board, dictionary, end_time - start_time
-
         board_ = new_board(old_board=board_, fen=board_.fen())
 
     end_time = time.perf_counter()
