@@ -31,6 +31,8 @@ games_count = train_conf['Games count']
 games_count_for_train = conf["Games Train Count"]
 
 
+DEFAULT_DEPTH = 20
+
 # graphic
 def show_intro():
     intro = Fore.RED + """                                                                      
@@ -168,12 +170,12 @@ def create_new_move(filename):
 
         for key in tqdm(error_keys, desc=f"Generating weights {w_}"):
             board = chess.Board(dict_errors[key])
-            score = analyze(engine=engine, board=board, depth=20)
+            score = analyze(engine=engine, board=board, depth=DEFAULT_DEPTH)
             real_score = re.sub('\D', '', str(score))
 
             if '-' in str(score) and int(str('-') + str(real_score)) <= -40:
                 # generating new move
-                move = best_move(engine=engine, board=board, depth=20)
+                move = best_move(engine=engine, board=board, depth=DEFAULT_DEPTH)
 
                 if not move is None:
                     try:
@@ -181,7 +183,7 @@ def create_new_move(filename):
                             board.push(move)
 
                         except:
-                            move = best_move(engine=engine, board=board, depth=20, use_weights=False)
+                            move = best_move(engine=engine, board=board, depth=DEFAULT_DEPTH, use_weights=False)
                             board.push(move)
                     
                     except:
@@ -189,7 +191,7 @@ def create_new_move(filename):
                             board.push(chess.Move.from_uci(str(move)))
 
                         except:
-                            move = best_move(engine=engine, board=board, depth=20, use_weights=False)
+                            move = best_move(engine=engine, board=board, depth=DEFAULT_DEPTH, use_weights=False)
                             board.push(move)
 
                     fens.append(str(board.shredder_fen()))
@@ -197,7 +199,7 @@ def create_new_move(filename):
                     dict_keys.append(str(key))
 
                 else:
-                    move = best_move(engine, board, depth=20, use_weights=False)
+                    move = best_move(engine, board, depth=DEFAULT_DEPTH, use_weights=False)
                     board.push(move)
 
                     fens.append(str(board.shredder_fen()))
@@ -206,7 +208,7 @@ def create_new_move(filename):
 
             if '+' in str(score) and int(real_score) >= 40:
                 # generating new move
-                move = best_move(engine=engine, board=board, depth=20)
+                move = best_move(engine=engine, board=board, depth=DEFAULT_DEPTH)
 
                 if not move is None:
                     try:
@@ -214,7 +216,7 @@ def create_new_move(filename):
                             board.push(move)
 
                         except:
-                            move = best_move(engine=engine, board=board, depth=20, use_weights=False)
+                            move = best_move(engine=engine, board=board, depth=DEFAULT_DEPTH, use_weights=False)
                             board.push(move)
                     
                     except:
@@ -222,7 +224,7 @@ def create_new_move(filename):
                             board.push(chess.Move.from_uci(str(move)))
 
                         except:
-                            move = best_move(engine=engine, board=board, depth=20, use_weights=False)
+                            move = best_move(engine=engine, board=board, depth=DEFAULT_DEPTH, use_weights=False)
                             board.push(move)
 
                     fens.append(str(board.shredder_fen()))
@@ -230,7 +232,7 @@ def create_new_move(filename):
                     dict_keys.append(str(key))
 
                 else:
-                    move = best_move(engine, board, depth=20, use_weights=False)
+                    move = best_move(engine, board, depth=DEFAULT_DEPTH, use_weights=False)
                     board.push(move)
 
                     fens.append(str(board.shredder_fen()))
