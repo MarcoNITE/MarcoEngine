@@ -11,7 +11,7 @@
  
 [![Join the chat at https://gitter.im/WennMarcoRTX/MarcoEngine](https://badges.gitter.im/WennMarcoRTX/MarcoEngine.svg)](https://gitter.im/WennMarcoRTX/MarcoEngine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)   
     
-[![by mN!](https://img.shields.io/badge/By-MarcoNIT-brown.svg)](https://github.com/WennMarcoRTX)
+[![by mN!](https://img.shields.io/badge/By-MarcoNITE-brown.svg)](https://github.com/WennMarcoRTX)
 [![its uci :)](https://img.shields.io/badge/UCI-engine-blue.svg)](https://en.wikipedia.org/wiki/Universal_Chess_Interface)
 
 [![Python](https://github.com/WennMarcoRTX/MarcoEngine/actions/workflows/python-app.yml/badge.svg)](https://github.com/WennMarcoRTX/MarcoEngine/actions/workflows/python-app.yml)
