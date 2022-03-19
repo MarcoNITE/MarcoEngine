@@ -46,7 +46,7 @@ python3 train.py
 After that, wait the amount of time you need, and turn off the program. Congratulations! You now have a working __MarcoEngine__ in your hands. Time to test it. The engine supports a small part of the __UCI__ protocol, but this is enough. To start the UCI shell:
 
 ```bash
-python3 uci.py [uci-command](not necessary)
+python3 uci.py
 ```
 
 # 🏗️ I want to build engine
