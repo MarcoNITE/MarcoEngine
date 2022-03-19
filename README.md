@@ -96,11 +96,11 @@ Very simple, but very productive. We improve our neural network almost every day
 
 <div align="center">
     <a href="https://github.com/WennMarcoRTX">
-        <img src="https://raw.githubusercontent.com/WennMarcoRTX/MarcoEngine/main/logo_social_github.png" width="3%"/>
+        <img src="./logo_social_github.png" width="3%"/>
     </a>
     <img width="3%" />
     <a href="https://lichess.org/@/ProshkaKartoshka">
-        <img src="https://raw.githubusercontent.com/WennMarcoRTX/MarcoEngine/main/logo_social_lichess.jpg" width="3%"/>
+        <img src="./logo_social_lichess.jpg" width="3%"/>
     </a>
     <img width="3%" />
 
