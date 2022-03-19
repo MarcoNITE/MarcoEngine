@@ -8,13 +8,11 @@
 <div id="badges" align="center">
     
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
- 
-[![Join the chat at https://gitter.im/WennMarcoRTX/MarcoEngine](https://badges.gitter.im/WennMarcoRTX/MarcoEngine.svg)](https://gitter.im/WennMarcoRTX/MarcoEngine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)   
     
 [![by mN!](https://img.shields.io/badge/By-MarcoNITE-brown.svg)](https://github.com/WennMarcoRTX)
 [![its uci :)](https://img.shields.io/badge/UCI-engine-blue.svg)](https://en.wikipedia.org/wiki/Universal_Chess_Interface)
 
-[![Python](https://github.com/WennMarcoRTX/MarcoEngine/actions/workflows/python-app.yml/badge.svg)](https://github.com/WennMarcoRTX/MarcoEngine/actions/workflows/python-app.yml)
+[![Python](https://github.com/MarcoNITE/MarcoEngine/actions/workflows/python-app.yml/badge.svg)](https://github.com/MarcoNITE/MarcoEngine/actions/workflows/python-app.yml)
     
 [![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
 [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
