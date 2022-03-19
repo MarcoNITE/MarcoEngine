@@ -1,0 +1,4 @@
+chess
+tqdm
+coloredlogs
+rich
