@@ -21,7 +21,7 @@
 </div>
     
 
-*Marco Engine* is an interesting neural chess network that uses a self-learning method (achieving a good game by trying out mistakes). 
+*MarcoEngine* is an interesting neural chess network that uses a self-learning method (achieving a good game by trying out mistakes). 
 
 # ↓ Installation
 
