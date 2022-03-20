@@ -7,15 +7,14 @@ from colorama import init, Fore # color text
 
 import train # train module
 from utils import * # utils
+from config import * # config
 
 init(autoreset=True) # initing colorama
 
 weights = [] # weights list
 
-SHOW_THINKING = True # showing thinking?
-
 board = chess.Board() # board
-engine = chess.engine.SimpleEngine.popen_uci("stockfish") # chess engine
+engine = chess.engine.SimpleEngine.popen_uci(ENGINE_DIR) # chess engine
 uci_conf = json.load(open('./settings/uci_config.json', 'r')) # uci config
 uci_conf2 = json.load(open('./settings/conf.json', 'r')) # id's uci config
 uci_default_conf = json.load(open('./settings/uci_default_config.json', 'r')) # default uci config
