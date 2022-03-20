@@ -30,34 +30,37 @@ def create_file(name):  # create new file
     return open(name, "r")  # return reading openned file
 
 
-def new_board(old_board: chess.Board, fen: str = None):  # create new board
+def new_board(old_board: chess.Board, fen: str = None): 
+    """Creating new board"""
+    
+    if fen is None: # if fen is None(we haven't fen)
+        n_board = chess.Board() # new board
+        n_board.clear() # clearing board
+        n_board.set_fen(chess.STARTING_FEN) # sets startong fen
 
-    if fen is None:
-        n_board = chess.Board()
-        n_board.clear()
-        n_board.set_fen(chess.STARTING_FEN)
+        return n_board # and returns board
 
-        return n_board
+    else: # else
+        n_board = chess.Board() # board
+        n_board.set_fen(fen) # sets fen
 
-    else:
-        n_board = chess.Board()
-        n_board.set_fen(fen)
-
-        return n_board
+        return n_board # and returns board
 
 
 def get_key(d, value):
-    for k, v in d.items():
-        if v == value:
-            return k
+    """Generate key from value"""
+    for k, v in d.items(): # cycle of items in dict
+        if v == value: # if v is value
+            return k # returns key
 
   
 def calculate_time(wtime, btime, depth):
-    if wtime <= 1000 and btime >= 1000:
-        return "0.{}".format(int(depth // 4))
+    """Calculate time limit on depth"""
+    if wtime <= 1000 and btime >= 1000: # if white is flags
+        return "0.{}".format(int(depth // 4)) # returns time
 
-    elif wtime <= 1000 and btime <= 1000:
-        return "0.".format(int(depth // random.randint(3, 5)))
+    elif wtime <= 1000 and btime <= 1000: # if white and black is flags
+        return "0.".format(int(depth // random.randint(3, 5))) # returns time
 
-    else:
-        return "0.".format(int(depth // random.randint(5, 9)))
+    else: # if time is normal
+        return "0.".format(int(depth // random.randint(5, 9))) # returns time
