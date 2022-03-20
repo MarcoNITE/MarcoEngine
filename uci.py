@@ -1,29 +1,30 @@
-import json
-import os
-import time
+import json # json dictionaries
+import os # Operating System
+import time # time module
 
-import chess.engine
-from colorama import init, Fore
+import chess.engine # chess engine
+from colorama import init, Fore # color text
 
-import train
-from utils import *
+import train # train module
+from utils import * # utils
 
-init(autoreset=True)
+init(autoreset=True) # initing colorama
 
-weights = []
+weights = [] # weights list
 
-SHOW_THINKING = True
+SHOW_THINKING = True # showing thinking?
 
-board = chess.Board()
-engine = chess.engine.SimpleEngine.popen_uci("stockfish")
-uci_conf = json.load(open('./settings/uci_config.json', 'r'))
-uci_conf2 = json.load(open('./settings/conf.json', 'r'))
-uci_default_conf = json.load(open('./settings/uci_default_config.json', 'r'))
-uci_min_conf = json.load(open('./settings/uci_min_config.json', 'r'))
-uci_max_conf = json.load(open('./settings/uci_max_config.json', 'r'))
+board = chess.Board() # board
+engine = chess.engine.SimpleEngine.popen_uci("stockfish") # chess engine
+uci_conf = json.load(open('./settings/uci_config.json', 'r')) # uci config
+uci_conf2 = json.load(open('./settings/conf.json', 'r')) # id's uci config
+uci_default_conf = json.load(open('./settings/uci_default_config.json', 'r')) # default uci config
+uci_min_conf = json.load(open('./settings/uci_min_config.json', 'r')) # minimal uci config
+uci_max_conf = json.load(open('./settings/uci_max_config.json', 'r')) # maximal uci config
 
 
 def show_intro():
+    """Showing intro"""
     intro = Fore.GREEN + f""" _______ _______               __              
 |   |   |    ___|.-----.-----.|__|.-----.-----.
 |       |    ___||     |  _  ||  ||     |  -__|
@@ -31,19 +32,20 @@ def show_intro():
                        |_____|      
 -----------------------------------------------
 {Fore.MAGENTA} MarcoEngine by Mark Kim. {Fore.LIGHTRED_EX} Neural chess network.  
-                       """
+                       """ # intro
 
-    print(intro)
+    print(intro) # printing intro
 
 
 def if_havent_weights(dir):
-    dir_list = os.listdir(str(dir))
-    if dir_list == ["weights_norm.default.json"]:
+    """Check for user have weights"""
+    dir_list = os.listdir(str(dir)) # dir of list weights
+    if dir_list == ["weights_norm.default.json"]: # if dir list is default weights
         print_l("""
                     You want to rename "weights_norm.json"(in directory
                     "weights") to "weights_norm.json".
         
-        """, type="CRITICAL")
+        """, type="CRITICAL") # printing error about
 
 
 def finding_weights():
