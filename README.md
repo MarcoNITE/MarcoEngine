@@ -31,6 +31,8 @@ First, install the required *libraries*:
 pip install -r requirements.txt
 ```
 
+Set your another __UCI engine__ in [config.py](./config.py) in [ENGINE_DIR](./config.py#2). 
+
 Wait for the modules to be installed. Now, you need to set the weights. You can find out more about this in the __Where I can download weights?__ section.
 
 # 🚗 Start engine
