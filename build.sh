@@ -11,5 +11,6 @@ pip install -r requriements.txt
 echo Compilation...
 python3 -m nuitka train.py
 python3 -m nuitka engine.py
+python3 -m nuitka config.py
 
 echo Done!
