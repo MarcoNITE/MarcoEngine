@@ -15,7 +15,6 @@
 [![Python](https://github.com/MarcoNITE/MarcoEngine/actions/workflows/python-app.yml/badge.svg)](https://github.com/MarcoNITE/MarcoEngine/actions/workflows/python-app.yml)
     
 [![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
-[![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
 [![macOS](https://svgshare.com/i/ZjP.svg)](https://svgshare.com/i/ZjP.svg)
     
 </div>
