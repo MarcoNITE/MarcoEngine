@@ -12,5 +12,6 @@ echo Compilation...
 python3 -m nuitka train.py
 python3 -m nuitka engine.py
 python3 -m nuitka config.py
+python3 -m nuitka python_checking.py
 
 echo Done!
