@@ -8,6 +8,7 @@ from colorama import init, Fore # color text
 import train # train module
 from utils import * # utils
 from config import * # config
+from python_checking import check # checking Operating System
 
 init(autoreset=True) # initing colorama
 
@@ -148,6 +149,7 @@ def uci_commander(command):
 
 show_intro()  # showing intro
 if_havent_weights('./weights')  # check for weights
+check() # checking Operating system
 
 while True:  # endless cycle
     cmd = input()  # command
