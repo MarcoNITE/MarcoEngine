@@ -12,6 +12,7 @@ from tqdm import tqdm # custom cycles
 
 from utils import * # utils 
 from config import * # config
+from python_checking import check # checking Operating System
 
 init(autoreset=True) # initing colorama
 
@@ -88,11 +89,10 @@ def analyze_without_score(engine, board, depth: int = None, limit: int = None):
         analyze_antijit(info, uci_conf) # anti-jit sets
 
         return info['score'] # returns score
-
-
+        
 def best_move(engine, board: chess.Board, depth: int = None, limit: int = None, use_weights = True):
     """Returns best move"""
-
+    
     if use_weights: # if we using weights
         scores_dict = {} # scores dictionary
 
@@ -315,6 +315,7 @@ def start(engine, g):
 
 if __name__ == '__main__': # if we start THIS file
     show_intro()  # showing intro
+    check() # checking Operating system
 
     count_g = 0 # games count
     iteration = 0 # number of iteration
