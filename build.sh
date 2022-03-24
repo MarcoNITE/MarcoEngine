@@ -5,7 +5,7 @@ printf "Welcome to ${GREEN} MarcoEngine ${NC} \n"
 
 # Installing Python modules
 echo Installing Python modules..
-pip install -r requriements.txt
+pip install -r requirements.txt
 
 # Building with Nuitka
 echo Compilation...
