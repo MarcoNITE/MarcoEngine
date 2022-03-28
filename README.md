@@ -22,6 +22,11 @@
 
 *MarcoEngine* is an interesting neural chess network that uses a self-learning method (achieving a good game by trying out mistakes). 
 
+# ⚠️ Notes
+
+- Working only on Linux ;
+- Python 3.10 or newer requied.
+
 # ↓ Installation
 
 First, install the required *libraries*:
