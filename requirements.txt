@@ -2,3 +2,4 @@ chess
 tqdm
 coloredlogs
 rich
+colorama
