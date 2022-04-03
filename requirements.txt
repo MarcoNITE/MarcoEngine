@@ -3,3 +3,4 @@ tqdm
 coloredlogs
 rich
 colorama
+requests
