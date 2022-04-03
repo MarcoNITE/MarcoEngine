@@ -32,6 +32,7 @@ def check():
 
     if platform.system() == "Windows":
         print(Fore.RED + 'Sorry, only Linux supported.')
+        exit(0)
 
     else:
         print(Fore.GREEN + 'Check done!')
