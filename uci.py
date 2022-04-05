@@ -6,6 +6,7 @@ import chess.engine # chess engine
 from colorama import init, Fore # color text
 
 import train # train module
+import engine_main # engine 
 from utils import * # utils
 from config import * # config
 from python_checking import check # checking Operating System
@@ -59,52 +60,7 @@ def uci_commander(command):
     # UCI-protocol
 
     if command.startswith('go'):
-        # default options
-        depth = 1000  # depth
-        movetime = -1  # movetime
-
-        # parse values
-        _, *params = command.split(' ')  # parameters
-        for param, val in zip(*2 * (iter(params),)):  # cycle of params and values
-            if param == 'depth':  # depth param
-                depth = int(val)  # depth value
-            if param == 'movetime':  # movetime param
-                movetime = int(val)  # movetime value
-            if param == 'wtime':  # wtime param
-                our_time = int(val)  # wtime value
-            if param == 'btime':  # btime param
-                opp_time = int(val)  # btime value
-
-        moves_remain = 40  # remaining moves
-
-        start = time.time()  # start time
-        ponder = None  # ponder move
-        for sdepth in range(0, depth + 1):  # cycle of self-depth and depth
-
-            if True:  # if showing thinking
-                if board.turn:  # if white to move
-                    score = train.analyze(engine, board, sdepth)  # score
-                else:  # if black to move
-                    score = train.analyze(engine, board, sdepth)  # score
-
-                usedtime = int((time.time() - start) * 1000)  # time used
-                print(
-                    'info depth {} score cp {} time {}'.format(sdepth, score, usedtime))  # about thinking
-
-            for m in range(0, 2):  # generate moves. 2 for ponder
-                best_move = train.best_move(engine, board, sdepth)  # append moves to moves list
-                print("bestmove " + str(best_move))  # send response about best move
-
-            # checks for no-bugs
-            if movetime > 0 and (time.time() - start) * 1000 > movetime:
-                break
-
-            if sdepth >= depth:
-                break
-
-        print("bestmove " + str(best_move))
-
-        del best_move  # delete best move
+        engine_main.go(command=command, board=board, engine=engine) # analyzing
 
     elif command.startswith('uciok') or command == 'uci':  # if command starts with "uciok", or command is "uci"..
         for key in list(uci_conf2.keys()):  # easy config(name, author)
@@ -139,6 +95,20 @@ def uci_commander(command):
 
     elif command.startswith('quit'):  # exit
         sys.exit(1)  # exit
+
+    # Stockfish-like commands
+    elif command == 'd':
+        print(board.unicode()) # prints unicode board
+
+    elif command == 'flip':
+        print(board.mirror().unicode()) # prints fliped board
+
+    elif command == 'bench':
+        for i in range(0, 11): # cycle: from 0 to 10
+            engine_main.go(command=command, board=board, engine=engine,
+                            depth=DEFAULT_DEPTH) # analyzing
+
+            print("------") # line
 
     elif command == "":  # random enter
         pass  # passing, new iteration
