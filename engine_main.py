@@ -1,11 +1,13 @@
 import train # training agent
 import chess # chess
 import time # time module
+import engine # Engine class
 
-def go(command: str, engine, board: chess.Board,
+def go(command: str, _engine, board: chess.Board,
         depth: int = 1000,
         movetime: int = -1):
         """Analyzing position"""
+
 
         # parse values
         _, *params = command.split(' ')  # parameters
@@ -27,16 +29,16 @@ def go(command: str, engine, board: chess.Board,
 
             if True:  # if showing thinking
                 if board.turn:  # if white to move
-                    score = train.analyze(engine, board, sdepth)  # score
+                    score = engine.analyze(_engine, board, sdepth)  # score
                 else:  # if black to move
-                    score = train.analyze(engine, board, sdepth)  # score
+                    score = engine.analyze(_engine, board, sdepth)  # score
 
                 usedtime = int((time.time() - start) * 1000)  # time used
                 print(
                     'info depth {} score cp {} time {}'.format(sdepth, score, usedtime))  # about thinking
 
             for m in range(0, 2):  # generate moves. 2 for ponder
-                best_move = train.best_move(engine, board, sdepth)  # append moves to moves list
+                best_move = engine.best_move(_engine, board, sdepth)  # append moves to moves list
                 print("bestmove " + str(best_move))  # send response about best move
 
             # checks for no-bugs
