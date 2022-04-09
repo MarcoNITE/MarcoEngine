@@ -141,14 +141,14 @@ def train(engine, board):
     while not board_.is_game_over(): # cycle. ends if game is over
    
         try: # trying
-            move = best_move(engine=_engine, board=board_, depth=DEFAULT_DEPTH) # best move
+            move = best_move(engine=engine, board=board_, depth=DEFAULT_DEPTH) # best move
 
             dictionary[str(move)] = str(board_.shredder_fen()) # append move and shredder fen to game dictionary
             
             board_.push(chess.Move.from_uci(str(move))) # pushing move
 
         except: # if error
-            move = best_move(engine=_engine, board=board_, limit=DEFAULT_DEPTH, use_weights=False) # analyzing move without weights
+            move = best_move(engine=engine, board=board_, limit=DEFAULT_DEPTH, use_weights=False) # analyzing move without weights
 
             dictionary[str(move)] = str(board_.shredder_fen()) # append move and shredder fen to game dictionary
             
