@@ -34,7 +34,7 @@ jobs:
     
     - name: Test with PyTest
       run: |
-        pytest tests/ests.py
+        pytest tests/tests.py
         
     - name: Test training
       run: |
