@@ -78,82 +78,104 @@ def analyze_without_score(engine, board, depth: int = None, limit: int = None):
 def best_move(engine, board: chess.Board, depth: int = None, limit: int = None, use_weights=True):
     """Returns best move"""
 
-    if use_weights:  # if we using weights
-        scores_dict = {}  # scores dictionary
+    if use_weights: # if we using weights
+        scores_dict = {} # scores dictionary
 
-        for w in os.listdir(str('./weights')):  # cycle of weights
-            weights_json = json.load(open(f"weights/{w}", 'r'))  # weights openning
+        for w in os.listdir(str('./weights')): # cycle of weights 
+            weights_json = json.load(open(f"weights/{w}", 'r')) # weights openning
 
-            result = engine.play(board, chess.engine.Limit(depth=depth))  # default move
+            if depth is not None and limit is None: # if depth is not none, but limit is none 
+                result = engine.play(board, chess.engine.Limit(depth=depth)) # move
+
+            elif depth is None and limit is not None:
+                result = engine.play(board, chess.engine.Limit(time=limit)) # move
 
             if str(board.shredder_fen()) not in weights_json.values():  # if board in weights
-                now_game_playing[str(result.move)] = str(board.shredder_fen())  # added move to now playing game
+                now_game_playing[str(result.move)] = str(board.shredder_fen()) # added move to now playing game
 
                 with open('./in_play/now_playing.json', 'w') as playing_game:  # openning weights file
                     json.dump(now_game_playing, playing_game, indent=4)  # dump dictionary to weights file
 
-                return result.move  # returns move
+                score = analyze(engine=engine, board=board, depth=DEFAULT_DEPTH - 5) # analyzing
+                scores_dict[str(result.move)] = str(score) # append score and move to dictionary
 
             else:
-                result = get_key(weights_json, str(board.shredder_fen()))  # be
+                result = get_key(weights_json, str(board.shredder_fen())) # be 
 
-                board.push(chess.Move.from_uci(str(result)))  # making move
-                score = analyze(engine=engine, board=board, depth=DEFAULT_DEPTH - 5)  # analyzing
-                scores_dict[str(result.move)] = str(score)  # append score and move to dictionary
+                board.push(chess.Move.from_uci(str(result))) # making move
+                score = analyze(engine=engine, board=board, depth=DEFAULT_DEPTH - 5) # analyzing
+                scores_dict[str(result.move)] = str(score) # append score and move to dictionary
 
-                board.pop()  # undo move
-
-        if board.turn:  # if white to move
-            now_game_playing[str(result.move)] = str(board.shredder_fen())  # added move to now playing game
+                board.pop() # undo move
+                
+        if board.turn: # if white to move
+            now_game_playing[str(result.move)] = str(board.shredder_fen()) # added move to now playing game
             with open('./in_play/now_playing.json', 'w') as playing_game:  # openning weights file
                 json.dump(now_game_playing, playing_game, indent=4)  # dump dictionary to weights file
 
-            return str(get_key(scores_dict, max(scores_dict.values())))  # returns move with maximal score
+            return str(get_key(scores_dict, max(scores_dict.values()))) # returns move with maximal score 
 
-        else:  # if black to move
-            now_game_playing[str(result.move)] = str(board.shredder_fen())  # added move to now playing game
+        else: # if black to move
+            now_game_playing[str(result.move)] = str(board.shredder_fen()) # added move to now playing game
             with open('./in_play/now_playing.json', 'w') as playing_game:  # openning weights file
                 json.dump(now_game_playing, playing_game, indent=4)  # dump dictionary to weights file
 
-            return str(get_key(scores_dict, min(scores_dict.values())))  # returns move with minimal score
+            return str(get_key(scores_dict, min(scores_dict.values()))) # returns move with minimal score 
+        
+    else: # if we not using
+        if depth is None and limit is None: # if depth and limit is none(empty)
+            raise 'You want input depth or limit!' # raised error
 
-    else:  # if we not using
-        if depth is None and limit is None:  # if depth and limit is none(empty)
-            raise 'You want input depth or limit!'  # raised error
+        elif depth is not None and limit is None: # if depth is not none, but limit is none 
+            result = engine.play(board, chess.engine.Limit(depth=depth)) # move
 
-        elif depth is not None and limit is None:  # if depth is not none, but limit is none
-            result = engine.play(board, chess.engine.Limit(depth=depth))  # move
-
-            return result.move  # return move
+            return result.move # return move
 
         elif depth is None and limit is not None:
-            result = engine.play(board, chess.engine.Limit(time=limit))  # move
+            result = engine.play(board, chess.engine.Limit(time=limit)) # move
 
-            return result.move  # return move
+            return result.move # return move
 
 
 def get_move(board, depth, use_weights):
     """Getting best move. Help if you using Lichess bot."""
     engine = chess.engine.SimpleEngine.popen_uci(ENGINE_DIR)  # engine
 
-    if use_weights:
-        try:  # trying
-            move = best_move(engine=engine, board=board, depth=depth, use_weights=True)  # getting best move
+    if depth is None and limit is None: # if user is not set depth or time limit...
+        raise "You want input depth or limit!" # raised error
 
-        except:  # if error
-            move = best_move(engine=engine, board=board, depth=depth, use_weights=False)  # getting move
+    if depth is not None:
+        if use_weights:
+            try: # trying
+                move = best_move(engine=engine, board=board, depth=depth, use_weights=True) # getting best move
 
+            except: # if error
+                move = best_move(engine=engine, board=board, depth=depth, use_weights=False) # getting move
+
+        else:
+            move = best_move(engine=engine, board=board, depth=depth, use_weights=False) # getting move
     else:
-        move = best_move(engine=engine, board=board, depth=depth, use_weights=False)  # getting move
+        if use_weights:
+            try: # trying
+                move = best_move(engine=engine, board=board, limit=limit, use_weights=True) # getting best move
 
-    board.push(move)  # making move
+            except: # if error
+                move = best_move(engine=engine, board=board, limit=limit, use_weights=False) # getting move
+
+        else:
+            move = best_move(engine=engine, board=board, limit=limit, use_weights=False) # getting move
+
+    try:
+        board.push(move) # making move
+    except:
+        board.push(chess.Move.from_uci(str(move)))
 
     print_o(move)  # prints move
-    if board.is_game_over():  # if game over
+    if board.is_game_over(): # if game over
 
-        train.create_new_move(filename='./in_play/now_playing.json')  # genering weights on played game
+        create_new_move(filename='./in_play/now_playing.json') # genering weights on played game
 
-    engine.close()
+    engine.quit()
 
 if __name__ == '__main__': # if we start THIS file
     check() # checking Operating system
