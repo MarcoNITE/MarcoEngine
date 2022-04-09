@@ -37,15 +37,18 @@ def delete_downloaded_zip():
 def download_sf():
     windows_or_linux = "win" if platform == "win32" else "linux"
     response = requests.get(f"https://stockfishchess.org/files/stockfish_14.1_{windows_or_linux}_x64.zip", allow_redirects=True)
-    with open("sf_zip.zip", "wb") as file:
+    with open("./TEMP/sf_zip.zip", "wb") as file:
         file.write(response.content)
-    shutil.copyfile(f"stockfish_14.1_{windows_or_linux}_x64/stockfish_14.1_{windows_or_linux}_x64{file_extension}", f"./TEMP/sf{file_extension}")
-    shutil.copyfile(f"sf{file_extension}", f"sf2{file_extension}")
+    with zipfile.ZipFile("./TEMP/sf_zip.zip", "r") as zip_ref:
+        zip_ref.extractall("./TEMP/")
+    shutil.copyfile(f"./TEMP/stockfish_14.1_{windows_or_linux}_x64/stockfish_14.1_{windows_or_linux}_x64{file_extension}", f"./TEMP/sf{file_extension}")
+    shutil.copyfile(f"./TEMP/sf{file_extension}", f"./TEMP/sf2{file_extension}")
     if windows_or_linux == "linux":
-        st = os.stat(f"sf{file_extension}")
-        os.chmod(f"sf{file_extension}", st.st_mode | stat.S_IEXEC)
-        st = os.stat(f"sf2{file_extension}")
-        os.chmod(f"sf2{file_extension}", st.st_mode | stat.S_IEXEC)
+        st = os.stat(f"./TEMP/sf{file_extension}")
+        os.chmod(f"./TEMP/sf{file_extension}", st.st_mode | stat.S_IEXEC)
+        st = os.stat(f"./TEMP/sf2{file_extension}")
+        os.chmod(f"./TEMP/sf2{file_extension}", st.st_mode | stat.S_IEXEC)
+
 
 check_os()
 download_me()
