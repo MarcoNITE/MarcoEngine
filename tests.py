@@ -47,11 +47,6 @@ def download_sf():
         st = os.stat(f"sf2{file_extension}")
         os.chmod(f"sf2{file_extension}", st.st_mode | stat.S_IEXEC)
 
-def test_train():
-    test_board = chess.Board()
-    _engine = chess.engine.SimpleEngine.popen_uci("./TEMP/sf") # openning engine
-    train.train()
-
 check_os()
 download_me()
 delete_downloaded_zip()
