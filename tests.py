@@ -50,11 +50,6 @@ def download_sf():
         os.chmod(f"./TEMP/sf2{file_extension}", st.st_mode | stat.S_IEXEC)
 
 
-def test_train():
-    test_board = chess.Board()
-    _engine = chess.engine.SimpleEngine.popen_uci("./TEMP/sf") # openning engine
-    train.train()
-
 if os.path.exists("TEMP"):
     shutil.rmtree("TEMP")
 os.mkdir("TEMP")
@@ -63,5 +58,5 @@ check_os()
 download_me()
 delete_downloaded_zip()
 download_sf()
-test_train()
+
 
