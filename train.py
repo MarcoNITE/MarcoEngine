@@ -1,5 +1,9 @@
 import chess.engine # chess engine
 from engine import * # Engine class
+import os
+
+if not os.path.exists("stockfish"): # if we haven't stockfish
+    os.system('./makefish.sh') # download it!
 
 init(autoreset=True) # initing colorama
 
