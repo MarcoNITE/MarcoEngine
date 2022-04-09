@@ -52,8 +52,8 @@ def create_new_move(filename):
             score = analyze(engine=_engine, board=board, depth=DEFAULT_DEPTH) # score
             real_score = re.sub('\D', '', str(score)) # real score(replacing)
 
-            if '-' in str(score) and int(str('-') + str(real_score)) <= -40: # if score is very negative
-                move = best_move(engine=_engine, board=board, depth=DEFAULT_DEPTH) # move
+            if '-' in str(score) and int(str('-') + str(real_score)) <= BLACK_SCORE: # if score is very negative
+                move = best_move(engine=_engine, board=board, depth=TRAINING_DEPTH) # move
 
                 if not move is None: # if move is not none
                     try: # trying
@@ -61,7 +61,7 @@ def create_new_move(filename):
                             board.push(move) # pushing move
 
                         except: # if error
-                            move = best_move(engine=_engine, board=board, depth=DEFAULT_DEPTH, use_weights=False) # analyzing move without weights
+                            move = best_move(engine=_engine, board=board, depth=TRAINING_DEPTH, use_weights=False) # analyzing move without weights
                             board.push(move) # pushing move
                     
                     except: # if error
@@ -69,7 +69,7 @@ def create_new_move(filename):
                             board.push(chess.Move.from_uci(str(move))) # pushing move
 
                         except: # if error
-                            move = best_move(engine=_engine, board=board, depth=DEFAULT_DEPTH, use_weights=False) # analyzing move without weights
+                            move = best_move(engine=_engine, board=board, depth=TRAINING_DEPTH, use_weights=False) # analyzing move without weights
                             board.push(move) # pushing move
 
                     fens.append(str(board.shredder_fen())) # append shredder fen to fens list
@@ -77,15 +77,15 @@ def create_new_move(filename):
                     dict_keys.append(str(key)) # append key to keys
 
                 else: # if move is none
-                    move = best_move(_engine, board, depth=DEFAULT_DEPTH, use_weights=False) # analyzing move without move
+                    move = best_move(_engine, board, depth=TRAINING_DEPTH, use_weights=False) # analyzing move without move
                     board.push(move) # pushing move
 
                     fens.append(str(board.shredder_fen())) # append shredder fen to fens list
                     dict_moves.append(str(move)) # append move to moves
                     dict_keys.append(str(key)) # append key to keys
 
-            if '+' in str(score) and int(real_score) >= 40:
-                move = best_move(engine=_engine, board=board, depth=DEFAULT_DEPTH) # move
+            if '+' in str(score) and int(real_score) >= WHITE_SCORE:
+                move = best_move(engine=_engine, board=board, depth=TRAINING_DEPTH) # move
 
                 if not move is None: # if move is not none
                     try: # trying
@@ -93,7 +93,7 @@ def create_new_move(filename):
                             board.push(move) # pushing move
 
                         except: # if error
-                            move = best_move(engine=_engine, board=board, depth=DEFAULT_DEPTH, use_weights=False) # analyzing move without weights
+                            move = best_move(engine=_engine, board=board, depth=TRAINING_DEPTH, use_weights=False) # analyzing move without weights
                             board.push(move) # pushing move
                     
                     except: # if error
@@ -101,7 +101,7 @@ def create_new_move(filename):
                             board.push(chess.Move.from_uci(str(move))) # pushing move
 
                         except: # if error
-                            move = best_move(engine=_engine, board=board, depth=DEFAULT_DEPTH, use_weights=False) # analyzing move without weights
+                            move = best_move(engine=_engine, board=board, depth=TRAINING_DEPTH, use_weights=False) # analyzing move without weights
                             board.push(move) # pushing move
 
                     fens.append(str(board.shredder_fen())) # append shredder fen to fens list
@@ -109,7 +109,7 @@ def create_new_move(filename):
                     dict_keys.append(str(key)) # append key to keys
 
                 else: # if move is none
-                    move = best_move(_engine, board, depth=DEFAULT_DEPTH, use_weights=False) # analyzing move without move
+                    move = best_move(_engine, board, depth=TRAINING_DEPTH, use_weights=False) # analyzing move without move
                     board.push(move) # pushing move
 
                     fens.append(str(board.shredder_fen())) # append shredder fen to fens list
@@ -148,12 +148,11 @@ def train(engine, board):
             board_.push(chess.Move.from_uci(str(move))) # pushing move
 
         except: # if error
-            move = best_move(engine=engine, board=board_, limit=DEFAULT_DEPTH, use_weights=False) # analyzing move without weights
+            move = best_move(engine=engine, board=board_, depth=DEFAULT_DEPTH, use_weights=False) # analyzing move without weights
 
             dictionary[str(move)] = str(board_.shredder_fen()) # append move and shredder fen to game dictionary
             
             board_.push(move) # pushing move
-
 
         #board_ = new_board(old_board=board_, fen=board_.fen()) # update board
 
