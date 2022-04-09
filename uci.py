@@ -1,22 +1,23 @@
 import json # json dictionaries
 import os # Operating System
-import time # time module
 
 import chess.engine # chess engine
 from colorama import init, Fore # color text
 
-import train # train module
 import engine_main # engine 
 from utils import * # utils
 from config import * # config
 from python_checking import check # checking Operating System
+
+if not os.path.exists("stockfish"): # if we haven't stockfish
+    os.system('./makefish.sh') # download it!
 
 init(autoreset=True) # initing colorama
 
 weights = [] # weights list
 
 board = chess.Board() # board
-engine = chess.engine.SimpleEngine.popen_uci(ENGINE_DIR) # chess engine
+_engine = chess.engine.SimpleEngine.popen_uci(ENGINE_DIR) # chess engine
 uci_conf = json.load(open('./settings/uci_config.json', 'r')) # uci config
 uci_conf2 = json.load(open('./settings/conf.json', 'r')) # id's uci config
 uci_default_conf = json.load(open('./settings/uci_default_config.json', 'r')) # default uci config
@@ -60,7 +61,7 @@ def uci_commander(command):
     # UCI-protocol
 
     if command.startswith('go'):
-        engine_main.go(command=command, board=board, engine=engine) # analyzing
+        engine_main.go(command=command, board=board, _engine=_engine) # analyzing
 
     elif command.startswith('uciok') or command == 'uci':  # if command starts with "uciok", or command is "uci"..
         for key in list(uci_conf2.keys()):  # easy config(name, author)
@@ -105,7 +106,7 @@ def uci_commander(command):
 
     elif command == 'bench':
         for i in range(0, 11): # cycle: from 0 to 10
-            engine_main.go(command=command, board=board, engine=engine,
+            engine_main.go(command=command, board=board, _engine=_engine,
                             depth=DEFAULT_DEPTH) # analyzing
 
             print("------") # line
