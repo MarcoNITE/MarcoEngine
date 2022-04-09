@@ -40,7 +40,7 @@ def download_sf():
     with open("sf_zip.zip", "wb") as file:
         file.write(response.content)
     shutil.copyfile(f"stockfish_14.1_{windows_or_linux}_x64/stockfish_14.1_{windows_or_linux}_x64{file_extension}", f"./TEMP/sf{file_extension}")
-    shutil.copyfile(f'sf{file_extension}", f"sf2{file_extension}")
+    shutil.copyfile(f"sf{file_extension}", f"sf2{file_extension}")
     if windows_or_linux == "linux":
         st = os.stat(f"sf{file_extension}")
         os.chmod(f"sf{file_extension}", st.st_mode | stat.S_IEXEC)
