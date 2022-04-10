@@ -36,6 +36,6 @@ jobs:
       run: |
         pytest tests.py
         
-    - name: Test training
+    - name: Build MarcoEngine
       run: |
-        pytest train_test.py
+        bash build.sh
