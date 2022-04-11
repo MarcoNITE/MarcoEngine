@@ -39,3 +39,6 @@ jobs:
     - name: Build MarcoEngine
       run: |
         bash build.sh
+    - name: Run MarcoEngine
+      run: |
+        python uci.py
