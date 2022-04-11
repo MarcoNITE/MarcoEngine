@@ -6,7 +6,7 @@ def test_move():
     """Testing training"""
     test_board = chess.Board() # tests board
     _engine = chess.engine.SimpleEngine.popen_uci("./stockfish") # openning engine
-    engine_main.go(engine=_engine, board=test_board,
+    engine_main.go(command="go depth 20", engine=_engine, board=test_board,
                    depth=20) # start training
 
 test_move() # starting!
