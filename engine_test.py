@@ -5,6 +5,8 @@ import chess.engine # chess engine
 def test_move():
         """Testing engine"""
         
+        _engine = chess.engine.SimpleEngine.popen_uci("stockfiish")
+        
         command = 'go depth 20' # test command
         # parse values
         _, *params = command.split(' ')  # parameters
