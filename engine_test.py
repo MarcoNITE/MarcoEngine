@@ -2,6 +2,7 @@ import engine_main # UCI engine
 import chess # chess 
 import chess.engine # chess engine
 import time # time module
+import engine # engine
 
 def test_move():
         """Testing engine"""
