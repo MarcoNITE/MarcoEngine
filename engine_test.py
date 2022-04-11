@@ -54,6 +54,8 @@ def test_move():
         print("bestmove " + str(best_move))
 
         del best_move  # delete best move
+        
+        exit() # exiting
 
 test_move() # starting!
 exit() # exiting
