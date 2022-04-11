@@ -44,6 +44,10 @@ jobs:
       run: |
         bash build.sh
         
-    - name: Run MarcoEngine
+    - name: Test move generation
       run: |
         python engine_test.py
+    
+    - name: Test training
+      run: |
+        python train_test.py
