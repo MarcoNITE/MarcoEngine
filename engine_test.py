@@ -57,6 +57,3 @@ if True:
         del best_move  # delete best move
         
         sys.exit() # exiting
-
-test_move() # starting!
-sys.exit() # exiting
