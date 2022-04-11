@@ -5,7 +5,7 @@ import time # time module
 import engine # engine
 import sys # system
 
-def test_move():
+if True:
         """Testing engine"""
         
         _engine = chess.engine.SimpleEngine.popen_uci("./stockfish")
