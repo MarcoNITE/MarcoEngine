@@ -36,9 +36,14 @@ jobs:
       run: |
         pytest tests.py
         
+    - name: Download Stockfish
+      run: |
+        bash makefish.sh
+    
     - name: Build MarcoEngine
       run: |
         bash build.sh
+        
     - name: Run MarcoEngine
       run: |
         python uci.py
