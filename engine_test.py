@@ -1,4 +1,4 @@
-import engine_main # Training agent
+import engine_main # UCI engine
 import chess # chess 
 import chess.engine # chess engine
 
