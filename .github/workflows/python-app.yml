@@ -46,4 +46,4 @@ jobs:
         
     - name: Run MarcoEngine
       run: |
-        python train_test.py
+        python engine_test.py
