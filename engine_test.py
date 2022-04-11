@@ -55,5 +55,6 @@ if True:
         print("bestmove " + str(best_move))
 
         del best_move  # delete best move
+        _engine.quit() # quit from engine
         
         sys.exit() # exiting
