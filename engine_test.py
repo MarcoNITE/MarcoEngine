@@ -3,6 +3,7 @@ import chess # chess
 import chess.engine # chess engine
 import time # time module
 import engine # engine
+import sys # system
 
 def test_move():
         """Testing engine"""
@@ -55,7 +56,7 @@ def test_move():
 
         del best_move  # delete best move
         
-        exit() # exiting
+        sys.exit() # exiting
 
 test_move() # starting!
-exit() # exiting
+sys.exit() # exiting
