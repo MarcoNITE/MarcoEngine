@@ -9,3 +9,4 @@ def test_move():
     engine_main.go(command="go depth 20", _engine=_engine, board=test_board) # start training
 
 test_move() # starting!
+exit() # exiting
