@@ -1,6 +1,7 @@
 import engine_main # UCI engine
 import chess # chess 
 import chess.engine # chess engine
+import time # time module
 
 def test_move():
         """Testing engine"""
