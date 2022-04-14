@@ -24,7 +24,7 @@
 
 # ⚠️ Notes
 
-- Working only on Linux ;
+- Working only on Linux;
 - Python 3.10 or newer requied.
 
 # ↓ Installation
