@@ -1,3 +1,5 @@
+### RESTART ###
+
 import chess # chess
 import chess.engine # chess engine
 import train # Training agent
