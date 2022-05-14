@@ -3,7 +3,7 @@ import chess
 
 try:
   board = chess.Board() # creating board
-  print(board.unicode()) # print board
+  print(board.unicode() + '\n') # print board
   # pushing some moves
   board.push_san("e4")
   board.push_san("e5")
