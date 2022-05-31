@@ -1,3 +1,8 @@
+# Developed by MarcoNITE in 2022. 
+# Recommends:
+# CPU - i4+(weak), i5(strong)
+# RAM 8 GB, weak network - 2 GB
+
 import chess.engine # chess engine
 from engine import * # Engine class
 import os
