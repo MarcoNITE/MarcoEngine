@@ -3,4 +3,4 @@ unzip stockfish_14.1_linux_x64.zip
 mv stockfish_14.1_linux_x64/stockfish_14.1_linux_x64 stockfish
 chmod +x stockfish
 rm stockfish_14.1_linux_x64.zip
-
+printf Enjoy! 
