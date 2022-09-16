@@ -103,7 +103,7 @@ Very simple, but very productive. We improve our neural network almost every day
 </div>
 
 <div align="center">
-    <a href="https://github.com/WennMarcoRTX">
+    <a href="https://github.com/AB-MT">
         <img src="./logo_social_github.png" width="3%"/>
     </a>
     <img width="3%" />
